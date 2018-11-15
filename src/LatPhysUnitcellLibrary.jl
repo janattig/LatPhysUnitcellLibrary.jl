@@ -13,7 +13,6 @@
 # TODO LIST
 # --> TODO common interface getUnitcell(:square)
 # --> TODO version vs. implementation
-# --> TODO UnitcellDefinitions -> UnitcellLibrary
 
 
 
@@ -22,6 +21,9 @@
 # module start
 module LatPhysUnitcellLibrary
 
+
+# using the Base module
+using LatPhysBase
 
 
 # include interface
