@@ -61,6 +61,11 @@ end
 
 
 
+# EXPORT OF THE FUNCTION
+export getUnitcellSquare
+
+
+
 ################################################################################
 #
 #   VERSION IMPLEMENTATIONS FROM HERE ON

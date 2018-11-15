@@ -61,6 +61,11 @@ end
 
 
 
+# EXPORT OF THE FUNCTION
+export getUnitcellTriangular
+
+
+
 ################################################################################
 #
 #   VERSION IMPLEMENTATIONS FROM HERE ON

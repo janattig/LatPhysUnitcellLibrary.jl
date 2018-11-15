@@ -64,6 +64,11 @@ end
 
 
 
+# EXPORT OF THE FUNCTION
+export getUnitcellKagome
+
+
+
 ################################################################################
 #
 #   VERSION IMPLEMENTATIONS FROM HERE ON

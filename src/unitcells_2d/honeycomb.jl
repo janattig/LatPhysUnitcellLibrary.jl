@@ -64,6 +64,11 @@ end
 
 
 
+# EXPORT OF THE FUNCTION
+export getUnitcellHoneycomb
+
+
+
 ################################################################################
 #
 #   VERSION IMPLEMENTATIONS FROM HERE ON
