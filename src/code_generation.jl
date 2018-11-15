@@ -1,4 +1,17 @@
-# PRINT  THE CODE THAT GENERATES A UNITCELL
+################################################################################
+#
+#   GENERATE THE CODE THAT A UNITCELL FILE IN THIS LIBRARY NEEDS
+#
+################################################################################
+
+
+
+
+################################################################################
+#
+#   VERSION CODE (ONLY SINGLE IMPLEMENTATION)
+#
+################################################################################
 
 # code for a specific unitcell version
 function getCodeUnitcellVersion(
@@ -261,6 +274,12 @@ end
 
 
 
+################################################################################
+#
+#   CODE FOR THE FILE STRUCTURE
+#
+################################################################################
+
 # get the code for Unitcell file header
 function getCodeUnitcellFileHeader(
             name :: String,
@@ -354,6 +373,11 @@ end
 
 
 
+################################################################################
+#
+#   PRINTING CODE INTO THE TERMINAL / OTHER IO
+#
+################################################################################
 
 # print the unitcell version code
 function printCodeUnitcellVersion(
@@ -386,6 +410,13 @@ function printCodeUnitcellVersion(
     print(code)
 end
 
+
+
+################################################################################
+#
+#   WRITE A COMPLETE UNITCELL CODE TO FILE
+#
+################################################################################
 
 # write a complete file for a unitcell
 function writeUnitcellFile(

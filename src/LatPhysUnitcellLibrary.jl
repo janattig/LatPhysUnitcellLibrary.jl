@@ -25,6 +25,9 @@ using LatPhysBase
 # include interface
 include("interface.jl")
 
+# include code generation for unitcell files
+include("code_generation.jl")
+
 
 
 # include 2d stuff
