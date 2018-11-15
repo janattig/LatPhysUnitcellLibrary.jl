@@ -10,10 +10,6 @@
 #
 ################################################################################
 
-# TODO LIST
-# --> TODO common interface getUnitcell(:square)
-# --> TODO version vs. implementation
-
 
 
 
