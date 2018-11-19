@@ -6,7 +6,10 @@ Unitcell library module of [`LatticePhysics.jl`](http://gitsrv.thp.uni-koeln.de/
 
 ## Contents
 
-still TODO ...
+Provides implementations of various unitcells as well as code to generate code for unitcell implementations.
+1.  unitcells in 2d
+2.  unitcells in 3d
+3.  code generation (both 2d and 3d)
 
 
 ## Installation (usage only):
