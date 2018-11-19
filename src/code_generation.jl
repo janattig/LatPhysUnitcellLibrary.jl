@@ -100,8 +100,9 @@ function getCodeUnitcellVersion(
     # print the generating code
     return generating_code
 end
+
 # code for a specific unitcell version but simplified
-function getCodeUnitcellSimplifiedVersion(
+function getCodeUnitcellVersionSimplified(
             unitcell    :: U,
             name        :: String = "myunitcell",
             version     :: Int64  = 1;
@@ -189,7 +190,7 @@ function getCodeUnitcellSimplifiedVersion(
 end
 
 # code for unitcell templates
-function getCodeUnitcellTemplate() :: String
+function getCodeUnitcellVersionTemplate() :: String
 
     # build the string of lattice vectors
     lattice_vector_string = ""
@@ -271,6 +272,14 @@ function getCodeUnitcellVersionFallback(
     # print the generating code
     return generating_code
 end
+
+
+
+# export all different ways of generating unitcell version code
+export getCodeUnitcellVersion, getCodeUnitcellVersionSimplified,
+    getCodeUnitcellVersionTemplate, getCodeUnitcellVersionFallback
+
+
 
 
 
@@ -359,6 +368,9 @@ function getCodeUnitcellFileHeader(
     complete_code *= "end\n\n\n\n"
 
 
+    # add an export for the relevant function
+    complete_code *= "export getUnitcell" * uppercase(name[1]) * name[2:end] * "\n\n\n\n"
+
 
     # add the distinction to version code
     complete_code *= "################################################################################\n"
@@ -370,6 +382,11 @@ function getCodeUnitcellFileHeader(
     # return the code
     return complete_code
 end
+
+# export header code function
+export getCodeUnitcellFileHeader
+
+
 
 
 
@@ -409,6 +426,12 @@ function printCodeUnitcellVersion(
     # print the code
     print(code)
 end
+
+
+# export print functions
+export printCodeUnitcellVersion
+
+
 
 
 
@@ -463,9 +486,9 @@ function writeUnitcellFile(
                 complete_code *= getCodeUnitcellVersionFallback(unitcell, name, 1) * "\n\n"
             end
             # generate a default version for Number
-            complete_code *= getCodeUnitcellSimplifiedVersion(unitcell, name, 1, labeltype_bond=Number, labeltype_site=Number) * "\n\n"
+            complete_code *= getCodeUnitcellVersionSimplified(unitcell, name, 1, labeltype_bond=Number, labeltype_site=Number) * "\n\n"
             # generate a default version for AbstractString
-            complete_code *= getCodeUnitcellSimplifiedVersion(unitcell, name, 1, labeltype_bond=AbstractString, labeltype_site=AbstractString) * "\n\n"
+            complete_code *= getCodeUnitcellVersionSimplified(unitcell, name, 1, labeltype_bond=AbstractString, labeltype_site=AbstractString) * "\n\n"
         end
 
     end
@@ -496,3 +519,6 @@ function writeUnitcellFile(
     close(f)
 
 end
+
+# export the function
+export writeUnitcellFile
