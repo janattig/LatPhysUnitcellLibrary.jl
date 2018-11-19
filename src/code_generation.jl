@@ -13,11 +13,11 @@
 #
 ################################################################################
 
-# code for a specific unitcell version
-function getCodeUnitcellVersion(
+# code for a specific unitcell implementation
+function getCodeUnitcellImplementation(
             unitcell    :: U,
             name        :: String = "myunitcell",
-            version     :: Int64  = 1;
+            implementation  :: Int64  = 1;
             labeltype_site  :: DataType = Nothing,
             labeltype_bond  :: DataType = Nothing
         ) :: String where {D,LS,LB,N, S<:AbstractSite{LS,D}, B<:AbstractBond{LB,N}, U<:AbstractUnitcell{S,B}}
@@ -68,11 +68,11 @@ function getCodeUnitcellVersion(
     # generate the complete generating code as a string
     generating_code = "" *
         "# Implementation\n" *
-        "# - version " * string(version) * "\n" *
+        "# - implementation " * string(implementation) * "\n" *
         "# - labels <: " * string(sitelabeltype) * " / " * string(bondlabeltype) * "\n" *
         "function getUnitcell" * uppercase(name[1]) * name[2:end] * "(\n" *
-        "            unitcell_type :: Type{U},\n" *
-        "            version       :: Val{" * string(version) * "}\n" *
+        "            unitcell_type  :: Type{U},\n" *
+        "            implementation :: Val{" * string(implementation) * "}\n" *
         "        ) :: U where {LS<:" *
         string(sitelabeltype) * ",LB<:" * string(bondlabeltype) *
         ",S<:AbstractSite{LS," * string(D) * "},B<:AbstractBond{LB," * string(N) * "}, " *
@@ -101,11 +101,11 @@ function getCodeUnitcellVersion(
     return generating_code
 end
 
-# code for a specific unitcell version but simplified
-function getCodeUnitcellVersionSimplified(
+# code for a specific unitcell implementation but simplified
+function getCodeUnitcellImplementationSimplified(
             unitcell    :: U,
             name        :: String = "myunitcell",
-            version     :: Int64  = 1;
+            implementation     :: Int64  = 1;
             labeltype_site  :: DataType = Nothing,
             labeltype_bond  :: DataType = Nothing
         ) :: String where {D,LS,LB,N, S<:AbstractSite{LS,D}, B<:AbstractBond{LB,N}, U<:AbstractUnitcell{S,B}}
@@ -156,11 +156,11 @@ function getCodeUnitcellVersionSimplified(
     # generate the complete generating code as a string
     generating_code = "" *
         "# Implementation\n" *
-        "# - version " * string(version) * "\n" *
+        "# - implementation " * string(implementation) * "\n" *
         "# - labels <: " * string(sitelabeltype) * " / " * string(bondlabeltype) * "\n" *
         "function getUnitcell" * uppercase(name[1]) * name[2:end] * "(\n" *
-        "            unitcell_type :: Type{U},\n" *
-        "            version       :: Val{" * string(version) * "}\n" *
+        "            unitcell_type  :: Type{U},\n" *
+        "            implementation :: Val{" * string(implementation) * "}\n" *
         "        ) :: U where {LS<:" *
         string(sitelabeltype) * ",LB<:" * string(bondlabeltype) *
         ",S<:AbstractSite{LS," * string(D) * "},B<:AbstractBond{LB," * string(N) * "}, " *
@@ -190,7 +190,7 @@ function getCodeUnitcellVersionSimplified(
 end
 
 # code for unitcell templates
-function getCodeUnitcellVersionTemplate() :: String
+function getCodeUnitcellImplementationTemplate() :: String
 
     # build the string of lattice vectors
     lattice_vector_string = ""
@@ -214,11 +214,11 @@ function getCodeUnitcellVersionTemplate() :: String
     # generate the complete generating code as a string
     generating_code = "" *
         "# Implementation\n" *
-        "# - version <VERSION>\n" *
+        "# - implementation <VERSION>\n" *
         "# - labels <: <SITELABELTYPE> / <BONDLABELTYPE>\n" *
         "function getUnitcell<UNITCELLNAME>(\n" *
-        "            unitcell_type :: Type{U},\n" *
-        "            version       :: Val{<VERSION>}\n" *
+        "            unitcell_type  :: Type{U},\n" *
+        "            implementation :: Val{<VERSION>}\n" *
         "        ) :: U where {LS<:<SITELABELTYPE>,LB<:<BONDLABELTYPE>, " *
         "S<:AbstractSite{LS,<SPACEDIMENSION>},B<:AbstractBond{LB,<LATTICEDIMENSION>}, " *
         "U<:AbstractUnitcell{S,B}}\n" *
@@ -246,27 +246,27 @@ function getCodeUnitcellVersionTemplate() :: String
     return generating_code
 end
 
-# code for unitcell version fallback
-function getCodeUnitcellVersionFallback(
+# code for unitcell implementation fallback
+function getCodeUnitcellImplementationFallback(
             unitcell    :: U,
             name        :: String = "myunitcell",
-            version     :: Int64  = 1
+            implementation     :: Int64  = 1
         ) :: String where {D,LS,LB,N, S<:AbstractSite{LS,D}, B<:AbstractBond{LB,N}, U<:AbstractUnitcell{S,B}}
 
     # generate the complete generating code as a string
     generating_code = "" *
         "# Implementation\n" *
-        "# - version " * string(version) * "\n" *
+        "# - implementation " * string(implementation) * "\n" *
         "# - labels <: Any\n" *
         "# --> FALLBACK (raises error)\n" *
         "function getUnitcell" * uppercase(name[1]) * name[2:end] * "(\n" *
-        "            unitcell_type :: Type{U},\n" *
-        "            version       :: Val{" * string(version) * "}\n" *
+        "            unitcell_type  :: Type{U},\n" *
+        "            implementation :: Val{" * string(implementation) * "}\n" *
         "        ) :: U where {LS,LB,S<:AbstractSite{LS," * string(D) * "},B<:AbstractBond{LB," * string(N) * "}, " *
         "U<:AbstractUnitcell{S,B}}\n" *
         "    \n" *
-        "    # error since this version has no implementation yet\n" *
-        "    error(\"Version " * string(version) * " of " * name * " unitcell has no implementation for label types \" * string(LS) * \" / \" * string(LB) * \" yet\")\n" *
+        "    # error since this implementation has no implementation yet\n" *
+        "    error(\"Implementation " * string(implementation) * " of " * name * " unitcell has no implementation for label types \" * string(LS) * \" / \" * string(LB) * \" yet\")\n" *
         "end"
 
     # print the generating code
@@ -275,9 +275,9 @@ end
 
 
 
-# export all different ways of generating unitcell version code
-export getCodeUnitcellVersion, getCodeUnitcellVersionSimplified,
-    getCodeUnitcellVersionTemplate, getCodeUnitcellVersionFallback
+# export all different ways of generating unitcell implementation code
+export getCodeUnitcellImplementation, getCodeUnitcellImplementationSimplified,
+    getCodeUnitcellImplementationTemplate, getCodeUnitcellImplementationFallback
 
 
 
@@ -311,60 +311,60 @@ function getCodeUnitcellFileHeader(
     # referencing function for abstract type
     complete_code *= "# Referencing to individual functions by wrapping in Val()\n"
     complete_code *= "function getUnitcell" * uppercase(name[1]) * name[2:end] * "(\n"
-    complete_code *= "            unitcell_type   :: Type{U},\n"
-    complete_code *= "            version         :: Int64 = 1\n"
+    complete_code *= "            unitcell_type  :: Type{U},\n"
+    complete_code *= "            implementation :: Int64 = 1\n"
     complete_code *= "        ) :: U where {LS,LB,S<:AbstractSite{LS," * string(D) * "},B<:AbstractBond{LB," * string(N) * "},U<:AbstractUnitcell{S,B}}\n"
     complete_code *= "    \n"
     complete_code *= "    # call the respective subfunction by converting to val type\n"
-    complete_code *= "    return getUnitcell" * uppercase(name[1]) * name[2:end] * "(unitcell_type, Val(version))\n"
+    complete_code *= "    return getUnitcell" * uppercase(name[1]) * name[2:end] * "(unitcell_type, Val(implementation))\n"
     complete_code *= "end\n\n"
 
     # fallback function for abstract type
     complete_code *= "# Fallback for all implementations (if Val{V} is not found)\n"
     complete_code *= "function getUnitcell" * uppercase(name[1]) * name[2:end] * "(\n"
-    complete_code *= "            unitcell_type   :: Type{U},\n"
-    complete_code *= "            version         :: Val{V}\n"
+    complete_code *= "            unitcell_type  :: Type{U},\n"
+    complete_code *= "            implementation :: Val{V}\n"
     complete_code *= "        ) :: U where {LS,LB,S<:AbstractSite{LS," * string(D) * "},B<:AbstractBond{LB," * string(N) * "},U<:AbstractUnitcell{S,B},V}\n"
     complete_code *= "    \n"
     complete_code *= "    # fallback / fail due to missing implementation\n"
-    complete_code *= "    error(\"Version \" * string(V) * \" of " * name * " unitcell (label types \" * string(LS) * \" / \" * string(LB) * \") not implemented yet\")\n"
+    complete_code *= "    error(\"Implementation \" * string(V) * \" of " * name * " unitcell (label types \" * string(LS) * \" / \" * string(LB) * \") not implemented yet\")\n"
     complete_code *= "end\n\n\n\n"
 
 
     # SECOND big headline (wrapper for concrete type)
     complete_code *= "# WRAPPER FUNCTIONS (for concrete Unitcell type) call general function\n\n"
 
-    # wrapper with only version (DEFAULT)
-    complete_code *= "# wrapper function for passing no label types (and version) (DEFAULT)\n"
+    # wrapper with only implementation (DEFAULT)
+    complete_code *= "# wrapper function for passing no label types (and implementation) (DEFAULT)\n"
     complete_code *= "function getUnitcell" * uppercase(name[1]) * name[2:end] * "(\n"
-    complete_code *= "            version :: Int64 = 1\n"
+    complete_code *= "            implementation :: Int64 = 1\n"
     complete_code *= "        ) :: Unitcell{Site{Int64," * string(D) * "},Bond{Int64," * string(N) * "}}\n"
     complete_code *= "    \n"
     complete_code *= "    # create a suitable unitcell of the Unitcell type\n"
-    complete_code *= "    return getUnitcell" * uppercase(name[1]) * name[2:end] * "(Unitcell{Site{Int64," * string(D) * "},Bond{Int64," * string(N) * "}}, version)\n"
+    complete_code *= "    return getUnitcell" * uppercase(name[1]) * name[2:end] * "(Unitcell{Site{Int64," * string(D) * "},Bond{Int64," * string(N) * "}}, implementation)\n"
     complete_code *= "end\n\n"
 
-    # wrapper with common label type and version
-    complete_code *= "# wrapper function for passing common label type (and version)\n"
+    # wrapper with common label type and implementation
+    complete_code *= "# wrapper function for passing common label type (and implementation)\n"
     complete_code *= "function getUnitcell" * uppercase(name[1]) * name[2:end] * "(\n"
-    complete_code *= "            label_type :: Type{L},\n"
-    complete_code *= "            version    :: Int64 = 1\n"
+    complete_code *= "            label_type     :: Type{L},\n"
+    complete_code *= "            implementation :: Int64 = 1\n"
     complete_code *= "        ) :: Unitcell{Site{L," * string(D) * "},Bond{L," * string(N) * "}} where L\n"
     complete_code *= "    \n"
     complete_code *= "    # create a suitable unitcell of the Unitcell type\n"
-    complete_code *= "    return getUnitcell" * uppercase(name[1]) * name[2:end] * "(Unitcell{Site{L," * string(D) * "},Bond{L," * string(N) * "}}, version)\n"
+    complete_code *= "    return getUnitcell" * uppercase(name[1]) * name[2:end] * "(Unitcell{Site{L," * string(D) * "},Bond{L," * string(N) * "}}, implementation)\n"
     complete_code *= "end\n\n"
 
-    # wrapper with common label type and version
-    complete_code *= "# wrapper function for passing site / bond label types (and version)\n"
+    # wrapper with common label type and implementation
+    complete_code *= "# wrapper function for passing site / bond label types (and implementation)\n"
     complete_code *= "function getUnitcell" * uppercase(name[1]) * name[2:end] * "(\n"
     complete_code *= "            label_type_site :: Type{LS},\n"
     complete_code *= "            label_type_bond :: Type{LB},\n"
-    complete_code *= "            version         :: Int64 = 1\n"
+    complete_code *= "            implementation  :: Int64 = 1\n"
     complete_code *= "        ) :: Unitcell{Site{LS," * string(D) * "},Bond{LB," * string(N) * "}} where {LS,LB}\n"
     complete_code *= "    \n"
     complete_code *= "    # create a suitable unitcell of the Unitcell type\n"
-    complete_code *= "    return getUnitcell" * uppercase(name[1]) * name[2:end] * "(Unitcell{Site{LS," * string(D) * "},Bond{LB," * string(N) * "}}, version)\n"
+    complete_code *= "    return getUnitcell" * uppercase(name[1]) * name[2:end] * "(Unitcell{Site{LS," * string(D) * "},Bond{LB," * string(N) * "}}, implementation)\n"
     complete_code *= "end\n\n\n\n"
 
 
@@ -372,7 +372,7 @@ function getCodeUnitcellFileHeader(
     complete_code *= "export getUnitcell" * uppercase(name[1]) * name[2:end] * "\n\n\n\n"
 
 
-    # add the distinction to version code
+    # add the distinction to implementation code
     complete_code *= "################################################################################\n"
     complete_code *= "#\n"
     complete_code *= "#   VERSION IMPLEMENTATIONS FROM HERE ON\n"
@@ -396,32 +396,32 @@ export getCodeUnitcellFileHeader
 #
 ################################################################################
 
-# print the unitcell version code
-function printCodeUnitcellVersion(
+# print the unitcell implementation code
+function printCodeUnitcellImplementation(
             io          :: IO,
             unitcell    :: U,
             name        :: String = "myunitcell",
-            version     :: Int64  = 1;
+            implementation     :: Int64  = 1;
             labeltype_site  :: DataType = Nothing,
             labeltype_bond  :: DataType = Nothing
         ) where {D,LS,LB,N, S<:AbstractSite{LS,D}, B<:AbstractBond{LB,N}, U<:AbstractUnitcell{S,B}}
 
     # get the code
-    code = getCodeUnitcellVersion(unitcell, name, version, labeltype_site=labeltype_site, labeltype_bond=labeltype_bond)
+    code = getCodeUnitcellImplementation(unitcell, name, implementation, labeltype_site=labeltype_site, labeltype_bond=labeltype_bond)
 
     # print the code
     print(io, code)
 end
-function printCodeUnitcellVersion(
+function printCodeUnitcellImplementation(
             unitcell    :: U,
             name        :: String = "myunitcell",
-            version     :: Int64  = 1;
+            implementation     :: Int64  = 1;
             labeltype_site  :: DataType = Nothing,
             labeltype_bond  :: DataType = Nothing
         ) where {D,LS,LB,N, S<:AbstractSite{LS,D}, B<:AbstractBond{LB,N}, U<:AbstractUnitcell{S,B}}
 
     # get the code
-    code = getCodeUnitcellVersion(unitcell, name, version, labeltype_site=labeltype_site, labeltype_bond=labeltype_bond)
+    code = getCodeUnitcellImplementation(unitcell, name, implementation, labeltype_site=labeltype_site, labeltype_bond=labeltype_bond)
 
     # print the code
     print(code)
@@ -429,7 +429,7 @@ end
 
 
 # export print functions
-export printCodeUnitcellVersion
+export printCodeUnitcellImplementation
 
 
 
@@ -446,7 +446,7 @@ function writeUnitcellFile(
             unitcell    :: U,
             uc_name     :: String = "myunitcell",
             folder      :: String = "./",
-            version     :: Int64  = 1
+            implementation     :: Int64  = 1
             ;
             generate_fallback :: Bool = true,
             generate_default  :: Bool = true
@@ -482,13 +482,13 @@ function writeUnitcellFile(
         if generate_default
             # check if default needs a fallback
             if generate_fallback
-                # add the fallback for version 1 to the code
-                complete_code *= getCodeUnitcellVersionFallback(unitcell, name, 1) * "\n\n"
+                # add the fallback for implementation 1 to the code
+                complete_code *= getCodeUnitcellImplementationFallback(unitcell, name, 1) * "\n\n"
             end
-            # generate a default version for Number
-            complete_code *= getCodeUnitcellVersionSimplified(unitcell, name, 1, labeltype_bond=Number, labeltype_site=Number) * "\n\n"
-            # generate a default version for AbstractString
-            complete_code *= getCodeUnitcellVersionSimplified(unitcell, name, 1, labeltype_bond=AbstractString, labeltype_site=AbstractString) * "\n\n"
+            # generate a default implementation for Number
+            complete_code *= getCodeUnitcellImplementationSimplified(unitcell, name, 1, labeltype_bond=Number, labeltype_site=Number) * "\n\n"
+            # generate a default implementation for AbstractString
+            complete_code *= getCodeUnitcellImplementationSimplified(unitcell, name, 1, labeltype_bond=AbstractString, labeltype_site=AbstractString) * "\n\n"
         end
 
     end
@@ -497,17 +497,17 @@ function writeUnitcellFile(
     # CUSTOM VERSION
 
     # maybe some space
-    if version != 1
+    if implementation != 1
         complete_code *= "\n\n"
     end
 
-    # check if custom version needs a fallback
-    if generate_fallback && version != 1
-        # add the fallback for version 1 to the code
-        complete_code *= getCodeUnitcellVersionFallback(unitcell, name, version) * "\n\n"
+    # check if custom implementation needs a fallback
+    if generate_fallback && implementation != 1
+        # add the fallback for implementation 1 to the code
+        complete_code *= getCodeUnitcellImplementationFallback(unitcell, name, implementation) * "\n\n"
     end
-    # generate a normal version code
-    complete_code *= getCodeUnitcellVersion(unitcell, name, version) * "\n\n"
+    # generate a normal implementation code
+    complete_code *= getCodeUnitcellImplementation(unitcell, name, implementation) * "\n\n"
 
 
 
