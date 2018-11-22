@@ -37,7 +37,7 @@ current_dir_info:
 package_folder:
   script:
     - mkdir packages
-    - git clone git@gitsrv.thp.uni-koeln.de:attig/LatPhysBase.jl.git packages/LatPhysBase.jl
+    - git clone http://gitlab+deploy-token-2:MgoW2PxpGUsJfSs2xgRA@gitsrv.thp.uni-koeln.de:attig/LatPhysBase.jl.git packages/LatPhysBase.jl
     - ls -lh
   stage: setup
 
