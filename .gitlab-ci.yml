@@ -88,6 +88,7 @@ julia_env_pkg_removing:
     - julia -e "using Pkg; pkg\"rm BenchmarkTools\";"
     - julia -e "using Pkg; pkg\"rm LatPhysBase\";"
     - julia -e "using Pkg; pkg\"rm LatPhysUnitcellLibrary\";"
+    - julia -e "using Pkg; pkg\"gc\""
   stage: cleanup_julia
 
 #---------------------------------------
