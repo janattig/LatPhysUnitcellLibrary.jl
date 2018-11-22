@@ -33,6 +33,12 @@ current_dir_info:
     - pwd
     - ls -lRh
   stage: setup
+  
+package_folder:
+  script:
+    - mkdir packages
+    - ls -lh
+  stage: setup
 
 #---------------------------------------
 #    STAGE: julia_pkg_setup
