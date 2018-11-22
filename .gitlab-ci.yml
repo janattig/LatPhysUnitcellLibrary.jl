@@ -69,7 +69,7 @@ initial_test:
 #---------------------------------------
 julia_pkg_test:
   script:
-    - julia -e "using Pkg; pkg\"test LatPhysUnitcellLibrary\""
+    - julia -e "using Pkg;" # pkg\"test LatPhysUnitcellLibrary\""
   stage: pkg_test
 
 
