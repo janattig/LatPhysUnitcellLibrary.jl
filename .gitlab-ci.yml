@@ -49,7 +49,7 @@ environment_pkg_test:
 julia_env_pkg_adding:
   script:
     - julia -e "using Pkg; pkg\"add BenchmarkTools\";"
-    - julia -e "using Pkg; pkg\"add \"http://gitlab+deploy-token-2:MgoW2PxpGUsJfSs2xgRA@gitsrv.thp.uni-koeln.de:attig/LatPhysBase.jl.git\"\";"
+    - julia -e "using Pkg; pkg\"add \\"http://gitlab+deploy-token-2:MgoW2PxpGUsJfSs2xgRA@gitsrv.thp.uni-koeln.de:attig/LatPhysBase.jl.git\\"\";"
     - julia -e "using Pkg; pkg\"dev ../LatPhysUnitcellLibrary.jl\";"
   stage: pkg_setup
 
