@@ -36,9 +36,8 @@ current_dir_info:
 
 package_folder:
   script:
-    - mkdir packages
-    - git clone http://gitlab+deploy-token-2:MgoW2PxpGUsJfSs2xgRA@gitsrv.thp.uni-koeln.de/attig/LatPhysBase.jl.git packages/LatPhysBase.jl
-    - ls -lh packages
+    - git clone http://gitlab+deploy-token-2:MgoW2PxpGUsJfSs2xgRA@gitsrv.thp.uni-koeln.de/attig/LatPhysBase.jl.git
+    - ls -lh LatPhys*
   stage: setup
 
 #---------------------------------------
@@ -48,7 +47,7 @@ package_folder:
 julia_env_pkg_adding:
   script:
     - julia -e "using Pkg; pkg\"add BenchmarkTools\";"
-    - julia -e "using Pkg; pkg\"dev ../LatPhysUnitcellLibrary.jl/packages/LatPhysBase.jl\";"
+    - julia -e "using Pkg; pkg\"dev LatPhysBase.jl\";"
     - julia -e "using Pkg; pkg\"dev ../LatPhysUnitcellLibrary.jl\";"
   stage: pkg_setup
 
