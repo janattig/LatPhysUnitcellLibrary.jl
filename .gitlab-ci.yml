@@ -47,7 +47,7 @@ package_folder:
 julia_env_pkg_adding:
   script:
     - julia -e "using Pkg; pkg\"add BenchmarkTools\";"
-    - julia -e "using Pkg; pkg\"dev LatPhysBase.jl\";"
+    - julia -e "using Pkg; pkg\"dev ./LatPhysBase.jl\";"
     - julia -e "using Pkg; pkg\"dev ../LatPhysUnitcellLibrary.jl\";"
   stage: pkg_setup
 
