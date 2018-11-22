@@ -34,6 +34,13 @@ current_dir_info:
     - ls -lRh
   stage: setup
 
+pkg_test:
+  script:
+    - julia -e "using Pkg; pkg\"st\";"
+    - julia -e "using Pkg; pkg\"gc\";"
+  stage: setup
+
+
 
 #---------------------------------------
 #    STAGE: julia_pkg_setup
