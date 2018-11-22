@@ -33,10 +33,11 @@ current_dir_info:
     - pwd
     - ls -lRh
   stage: setup
-  
+
 package_folder:
   script:
     - mkdir packages
+    - git clone git@gitsrv.thp.uni-koeln.de:attig/LatPhysBase.jl.git packages/LatPhysBase.jl
     - ls -lh
   stage: setup
 
@@ -47,6 +48,7 @@ package_folder:
 julia_env_pkg_adding:
   script:
     - julia -e "using Pkg; pkg\"add BenchmarkTools\";"
+    - julia -e "using Pkg; pkg\"dev packages/LatPhysBase.jl\";"
     - julia -e "using Pkg; pkg\"dev ../LatPhysUnitcellLibrary.jl\";"
   stage: pkg_setup
 
@@ -83,6 +85,7 @@ julia_pkg_test:
 julia_env_pkg_removing:
   script:
     - julia -e "using Pkg; pkg\"rm BenchmarkTools\";"
+    - julia -e "using Pkg; pkg\"rm LatPhysBase\";"
     - julia -e "using Pkg; pkg\"rm LatPhysUnitcellLibrary\";"
   stage: cleanup_julia
 
