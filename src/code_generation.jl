@@ -126,11 +126,7 @@ function getCodeUnitcellImplementationSimplified(
     # build a string for all sites
     site_string = ""
     for (i,s) in enumerate(sites(unitcell))
-        if sitelabeltype <: AbstractString
-            site_string = site_string * "            newSite(S, Float64" * string(point(s)) * ", LS(\"" * string(i) *  "\")),\n"
-        else
-            site_string = site_string * "            newSite(S, Float64" * string(point(s)) * ", LS(" * string(i) *  ")),\n"
-        end
+        site_string = site_string * "            newSite(S, Float64" * string(point(s)) * ", getDefaultLabel(LS)),\n"
     end
     if length(site_string) > 2
         site_string = site_string[1:end-2] * "\n"
@@ -138,16 +134,10 @@ function getCodeUnitcellImplementationSimplified(
 
     # build a string for all bonds
     bond_string = ""
-    for b in bonds(unitcell)
-        if bondlabeltype <: AbstractString #newBond(B, 1,1, LB("1"), (+1,0))
-            bond_string = bond_string * "            newBond(B, " *
-                string(from(b)) * ", " * string(to(b)) *
-                ", LB(\"1\"), " * string(wrap(b)) * "),\n"
-        else
-            bond_string = bond_string * "            newBond(B, " *
-                string(from(b)) * ", " * string(to(b)) *
-                ", LB(1), " * string(wrap(b)) * "),\n"
-        end
+    for b in bonds(unitcell) #newBond(B, 1,1, LB("1"), (+1,0))
+        bond_string = bond_string * "            newBond(B, " *
+            string(from(b)) * ", " * string(to(b)) *
+            ", getDefaultLabel(LB), " * string(wrap(b)) * "),\n"
     end
     if length(bond_string) > 2
         bond_string = bond_string[1:end-2] * "\n"
