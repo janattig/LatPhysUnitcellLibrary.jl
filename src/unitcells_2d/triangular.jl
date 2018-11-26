@@ -75,25 +75,12 @@ export getUnitcellTriangular
 # Implementation
 # - implementation 1
 # - labels <: Any
-# --> FALLBACK (raises error)
 function getUnitcellTriangular(
             unitcell_type  :: Type{U},
             implementation :: Val{1}
         ) :: U where {LS,LB,S<:AbstractSite{LS,2},B<:AbstractBond{LB,2},U<:AbstractUnitcell{S,B}}
 
     # return a new Unitcell
-    error("Implementation 1 of triangular unitcell has no implementation for label types " * string(LS) * " / " * string(LB) * " yet")
-end
-
-# Implementation
-# - implementation 1
-# - labels <: AbstractString
-function getUnitcellTriangular(
-            unitcell_type  :: Type{U},
-            implementation :: Val{1}
-        ) :: U where {LS<:AbstractString,LB<:AbstractString,S<:AbstractSite{LS,2},B<:AbstractBond{LB,2},U<:AbstractUnitcell{S,B}}
-
-    # return a new Unitcell
     return newUnitcell(
         # Type of the unitcell
         U,
@@ -104,49 +91,16 @@ function getUnitcellTriangular(
         ],
         # sites
         S[
-            newSite(S, Float64[0,0], LS("1"))
+            newSite(S, Float64[0,0], getDefaultLabel(LS))
         ],
         # bonds
         B[
-            newBond(B, 1,1, LB("1"), (+1, 0)),
-            newBond(B, 1,1, LB("1"), (-1, 0)),
-            newBond(B, 1,1, LB("1"), ( 0,+1)),
-            newBond(B, 1,1, LB("1"), ( 0,-1)),
-            newBond(B, 1,1, LB("1"), (+1,-1)),
-            newBond(B, 1,1, LB("1"), (-1,+1))
-        ]
-    )
-end
-
-# Implementation
-# - implementation 1
-# - labels <: Number
-function getUnitcellTriangular(
-            unitcell_type  :: Type{U},
-            implementation :: Val{1}
-        ) :: U where {LS<:Number,LB<:Number,S<:AbstractSite{LS,2},B<:AbstractBond{LB,2},U<:AbstractUnitcell{S,B}}
-
-    # return a new Unitcell
-    return newUnitcell(
-        # Type of the unitcell
-        U,
-        # lattice vectors
-        Vector{Float64}[
-            Float64[sqrt(3.0)/2, -0.5],
-            Float64[sqrt(3.0)/2, +0.5]
-        ],
-        # sites
-        S[
-            newSite(S, Float64[0,0], LS(1))
-        ],
-        # bonds
-        B[
-            newBond(B, 1,1, LB(1), (+1, 0)),
-            newBond(B, 1,1, LB(1), (-1, 0)),
-            newBond(B, 1,1, LB(1), ( 0,+1)),
-            newBond(B, 1,1, LB(1), ( 0,-1)),
-            newBond(B, 1,1, LB(1), (+1,-1)),
-            newBond(B, 1,1, LB(1), (-1,+1))
+            newBond(B, 1,1, getDefaultLabel(LB), (+1, 0)),
+            newBond(B, 1,1, getDefaultLabel(LB), (-1, 0)),
+            newBond(B, 1,1, getDefaultLabel(LB), ( 0,+1)),
+            newBond(B, 1,1, getDefaultLabel(LB), ( 0,-1)),
+            newBond(B, 1,1, getDefaultLabel(LB), (+1,-1)),
+            newBond(B, 1,1, getDefaultLabel(LB), (-1,+1))
         ]
     )
 end
