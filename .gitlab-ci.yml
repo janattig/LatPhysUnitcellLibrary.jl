@@ -3,6 +3,7 @@
 #---------------------------------------
 stages:
   - setup
+  - pkg_clone
   - pkg_setup
   - using_pkg
   - pkg_test
@@ -52,6 +53,16 @@ pkg_env_setup:
     - julia -e "using Pkg; pkg\"gc\";"
   stage: setup
 
+#---------------------------------------
+#    STAGE: pkg_clone
+#    --> git clone all packagess
+#---------------------------------------
+
+pkgcl_LatPhysBase:
+  script:
+    - git clone http://gitlab+deploy-token-2:MgoW2PxpGUsJfSs2xgRA@gitsrv.thp.uni-koeln.de/attig/LatPhysBase.jl.git ~/.julia/dev/LatPhysBase.jl
+  stage: pkg_clone
+
 
 #---------------------------------------
 #    STAGE: julia_pkg_setup
@@ -60,7 +71,6 @@ pkg_env_setup:
 julia_env_pkg_adding:
   script:
     - julia -e "using Pkg; pkg\"add BenchmarkTools\";"
-    - git clone http://gitlab+deploy-token-2:MgoW2PxpGUsJfSs2xgRA@gitsrv.thp.uni-koeln.de/attig/LatPhysBase.jl.git ~/.julia/dev/LatPhysBase.jl
     - julia -e "using Pkg; pkg\"dev ~/.julia/dev/LatPhysBase.jl\";"
     - julia -e "using Pkg; pkg\"dev ../LatPhysUnitcellLibrary.jl\";"
   stage: pkg_setup
