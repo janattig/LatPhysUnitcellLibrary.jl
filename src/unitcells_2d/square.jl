@@ -91,7 +91,7 @@ function getUnitcellSquare(
         ],
         # sites
         S[
-            newSite(S, Float64[0,0], getDefaultLabel(LS))
+            newSite(S, Float64[0,0], getDefaultLabelN(LS,1))
         ],
         # bonds
         B[

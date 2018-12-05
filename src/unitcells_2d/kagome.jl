@@ -95,9 +95,9 @@ function getUnitcellKagome(
         ],
         # Sites
         S[
-            newSite(S, Float64[     0.0   ,  0.0 ], getDefaultLabel(LS)),
-            newSite(S, Float64[sqrt(3.0)/4, -0.25], getDefaultLabel(LS)),
-            newSite(S, Float64[sqrt(3.0)/4, +0.25], getDefaultLabel(LS))
+            newSite(S, Float64[     0.0   ,  0.0 ], getDefaultLabelN(LS,1)),
+            newSite(S, Float64[sqrt(3.0)/4, -0.25], getDefaultLabelN(LS,2)),
+            newSite(S, Float64[sqrt(3.0)/4, +0.25], getDefaultLabelN(LS,3))
         ],
         # Bonds
         B[

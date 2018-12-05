@@ -96,8 +96,8 @@ function getUnitcellHoneycomb(
         ],
         # Sites
         S[
-            newSite(S, Float64[0.0, 0.0],         getDefaultLabel(LS)),
-            newSite(S, Float64[1/sqrt(3.0), 0.0], getDefaultLabel(LS))
+            newSite(S, Float64[0.0, 0.0],         getDefaultLabelN(LS,1)),
+            newSite(S, Float64[1/sqrt(3.0), 0.0], getDefaultLabelN(LS,2))
         ],
         # Bonds
         B[
