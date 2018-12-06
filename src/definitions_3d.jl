@@ -11,4 +11,6 @@
 
 # Cubic lattice
 include("unitcells_3d/cubic.jl")
+
+# FCC lattice (face centered cubic)
 include("unitcells_3d/fcc.jl")
