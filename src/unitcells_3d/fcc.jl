@@ -9,17 +9,17 @@
 # REFERENCE / FALLBACK (for generic AbstractUnitcell type)
 
 # referencing to individual functions by wrapping in Val()
-function getUnitcellFcc(
+function getUnitcellFCC(
             unitcell_type  :: Type{U},
             implementation :: Int64 = 1
         ) :: U where {LS,LB,S<:AbstractSite{LS,3},B<:AbstractBond{LB,3},U<:AbstractUnitcell{S,B}}
 
     # call the respective subfunction by converting to val type
-    return getUnitcellFcc(unitcell_type, Val(implementation))
+    return getUnitcellFCC(unitcell_type, Val(implementation))
 end
 
 # Fallback for all implementations (if Val{V} is not found)
-function getUnitcellFcc(
+function getUnitcellFCC(
             unitcell_type  :: Type{U},
             implementation :: Val{V}
         ) :: U where {LS,LB,S<:AbstractSite{LS,3},B<:AbstractBond{LB,3},U<:AbstractUnitcell{S,B},V}
@@ -33,36 +33,36 @@ end
 # WRAPPER FUNCTIONS (for concrete Unitcell type) call general function
 
 # wrapper function for passing no label types (and implementation) (DEFAULT)
-function getUnitcellFcc(
+function getUnitcellFCC(
             implementation :: Int64    = 1
         ) :: Unitcell{Site{Int64,3},Bond{Int64,3}}
     # create a suitable unitcell of the given type
-    return getUnitcellFcc(Unitcell{Site{Int64,3},Bond{Int64,3}}, implementation)
+    return getUnitcellFCC(Unitcell{Site{Int64,3},Bond{Int64,3}}, implementation)
 end
 
 # wrapper function for passing common label type (and implementation)
-function getUnitcellFcc(
+function getUnitcellFCC(
             label_type     :: Type{L},
             implementation :: Int64    = 1
         ) :: Unitcell{Site{L,3},Bond{L,3}} where L
     # create a suitable unitcell of the given type
-    return getUnitcellFcc(Unitcell{Site{L,3},Bond{L,3}}, implementation)
+    return getUnitcellFCC(Unitcell{Site{L,3},Bond{L,3}}, implementation)
 end
 
 # wrapper function for passing site / bond label types (and implementation)
-function getUnitcellFcc(
+function getUnitcellFCC(
             label_type_site :: Type{LS},
             label_type_bond :: Type{LB},
             implementation  :: Int64 = 1
         ) :: Unitcell{Site{LS,3},Bond{LB,3}} where {LS,LB}
     # create a suitable unitcell of the given type
-    return getUnitcellFcc(Unitcell{Site{LS,3},Bond{LB,3}}, implementation)
+    return getUnitcellFCC(Unitcell{Site{LS,3},Bond{LB,3}}, implementation)
 end
 
 
 
 # EXPORT OF THE FUNCTION
-export getUnitcellFcc
+export getUnitcellFCC
 
 
 
@@ -75,7 +75,7 @@ export getUnitcellFcc
 # Implementation
 # - implementation 1
 # - labels <: Any
-function getUnitcellFcc(
+function getUnitcellFCC(
             unitcell_type  :: Type{U},
             implementation :: Val{1}
         ) :: U where {LS,LB,S<:AbstractSite{LS,3},B<:AbstractBond{LB,3},U<:AbstractUnitcell{S,B}}
