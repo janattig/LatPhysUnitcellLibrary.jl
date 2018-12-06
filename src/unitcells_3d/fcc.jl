@@ -65,6 +65,17 @@ end
 export getUnitcellFCC
 
 
+# generic interface implementation
+function getUnitcell(
+            identifier :: Val{:fcc},
+            args...
+        )
+
+    # return the fitting fcc function
+    return getUnitcellFCC(args...)
+end
+
+
 
 ################################################################################
 #

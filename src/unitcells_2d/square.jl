@@ -66,6 +66,18 @@ export getUnitcellSquare
 
 
 
+# generic interface implementation
+function getUnitcell(
+            identifier :: Val{:square},
+            args...
+        )
+
+    # return the fitting square function
+    return getUnitcellSquare(args...)
+end
+
+
+
 ################################################################################
 #
 #   VERSION IMPLEMENTATIONS FROM HERE ON

@@ -69,6 +69,18 @@ export getUnitcellKagome
 
 
 
+# generic interface implementation
+function getUnitcell(
+            identifier :: Val{:kagome},
+            args...
+        )
+
+    # return the fitting Kagome function
+    return getUnitcellKagome(args...)
+end
+
+
+
 ################################################################################
 #
 #   VERSION IMPLEMENTATIONS FROM HERE ON

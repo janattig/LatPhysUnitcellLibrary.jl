@@ -66,6 +66,18 @@ export getUnitcellTriangular
 
 
 
+# generic interface implementation
+function getUnitcell(
+            identifier :: Val{:triangular},
+            args...
+        )
+
+    # return the fitting triangular function
+    return getUnitcellTriangular(args...)
+end
+
+
+
 ################################################################################
 #
 #   VERSION IMPLEMENTATIONS FROM HERE ON

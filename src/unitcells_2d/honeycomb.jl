@@ -69,6 +69,18 @@ export getUnitcellHoneycomb
 
 
 
+# generic interface implementation
+function getUnitcell(
+            identifier :: Val{:honeycomb},
+            args...
+        )
+
+    # return the fitting honeycomb function
+    return getUnitcellHoneycomb(args...)
+end
+
+
+
 ################################################################################
 #
 #   VERSION IMPLEMENTATIONS FROM HERE ON

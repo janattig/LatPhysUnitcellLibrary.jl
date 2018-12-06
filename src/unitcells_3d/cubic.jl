@@ -66,6 +66,18 @@ export getUnitcellCubic
 
 
 
+# generic interface implementation
+function getUnitcell(
+            identifier :: Val{:cubic},
+            args...
+        )
+
+    # return the fitting cubic function
+    return getUnitcellCubic(args...)
+end
+
+
+
 ################################################################################
 #
 #   VERSION IMPLEMENTATIONS FROM HERE ON
