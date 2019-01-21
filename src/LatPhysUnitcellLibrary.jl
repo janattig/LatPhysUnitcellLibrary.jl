@@ -25,8 +25,8 @@ using LatPhysBase
 # include interface
 include("interface.jl")
 
-# include code generation for unitcell files
-include("code_generation.jl")
+# include code generation tools for unitcell files
+include("code_generation_tools.jl")
 
 
 
@@ -36,6 +36,9 @@ include("definitions_2d.jl")
 # include 3d stuff
 include("definitions_3d.jl")
 
+
+# include the generation of wrapper functions of code
+include("code_generation.jl")
 
 
 # module end
