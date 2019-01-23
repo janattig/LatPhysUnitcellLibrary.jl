@@ -1,6 +1,7 @@
 # LIST OF OPERATORNAMES
 functions_generate = Tuple{String, Int64, Int64}[
     ("Square", 2, 2),
+    ("SquareOctagon", 2, 2),
     ("Triangular", 2, 2),
     ("Honeycomb", 2, 2),
     ("Kagome", 2, 2),

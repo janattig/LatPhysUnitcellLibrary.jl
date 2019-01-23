@@ -12,7 +12,8 @@
 # Square lattice
 include("unitcells_2d/square.jl")
 
-
+# Square octagon lattice
+include("unitcells_2d/square_octagon.jl")
 
 
 
