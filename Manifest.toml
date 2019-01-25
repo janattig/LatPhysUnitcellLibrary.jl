@@ -1,0 +1,6 @@
+[[LatPhysBase]]
+git-tree-sha1 = "a4b37944a1dc925637e30cccf5426781eb4f9922"
+repo-rev = "master"
+repo-url = "/home/jattig/PackageDevelopement/LatPhysBase.jl"
+uuid = "eec5c15a-e8bd-11e8-0d23-6799ca40c963"
+version = "0.1.0"
