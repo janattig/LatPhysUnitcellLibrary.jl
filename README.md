@@ -1,6 +1,6 @@
-# LatPhysUnitcellLibrary.jl [![pipeline status](http://gitsrv.thp.uni-koeln.de/attig/LatPhysUnitcellLibrary.jl/badges/master/pipeline.svg)](http://gitsrv.thp.uni-koeln.de/attig/LatPhysUnitcellLibrary.jl/commits/master) [![coverage report](http://gitsrv.thp.uni-koeln.de/attig/LatPhysUnitcellLibrary.jl/badges/master/coverage.svg)](http://gitsrv.thp.uni-koeln.de/attig/LatPhysUnitcellLibrary.jl/commits/master)
+# LatPhysUnitcellLibrary.jl
 
-Unitcell library module of [`LatticePhysics.jl`](http://gitsrv.thp.uni-koeln.de/attig/LatticePhysics.jl). which contains all unitcell definitions from the main library.
+Unitcell library module of [`LatticePhysics.jl`](https://github.com/janattig/LatticePhysics.jl).
 
 
 
@@ -12,37 +12,10 @@ Provides implementations of various unitcells as well as code to generate code f
 3.  code generation (both 2d and 3d)
 
 
-## Installation (usage only):
+## Installation
 
 For usage purposes only, you can install the package via the package mode in Julia (Pkg). However, since the package
 is not listed in the Julia package repositories, you have to use
 ```julia
-(v1.0) pkg> add "git@gitsrv.thp.uni-koeln.de:attig/LatPhysUnitcellLibrary.jl.git"
+(v1.0) pkg> add "https://github.com/janattig/LatPhysUnitcellLibrary.jl"
 ```
-Note: this can lead to Errors under Windows 10 due to incorrect SSH access. Use the following command instead:
-```julia
-(v1.0) pkg> add "http://gitsrv.thp.uni-koeln.de/attig/LatPhysUnitcellLibrary.jl.git"
-```
-You will be prompted a username and password validation but it should work the same way.
-
-
-## Installation (developement):
-
-For developement purposes, it is best to clone the package via git to a developement
-git location of your choice and use
-```julia
-(v1.0) pkg> dev "path/to/the/repository/on/your/machine"
-```
-
-Alternatively, you could use
-```julia
-(v1.0) pkg> dev "git@gitsrv.thp.uni-koeln.de:attig/LatPhysUnitcellLibrary.jl.git"
-```
-or (on Windows)
-```julia
-(v1.0) pkg> dev "http://gitsrv.thp.uni-koeln.de/attig/LatPhysUnitcellLibrary.jl.git"
-```
-to clone a development version of the package to `~/.julia/dev/`.
-
-
-Finally, develope the package as you are used to within the editor of your choice.
