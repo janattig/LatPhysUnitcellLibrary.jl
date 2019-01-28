@@ -7,7 +7,8 @@ functions_generate = Tuple{String, Int64, Int64}[
     ("Kagome", 2, 2),
 
     ("Cubic", 3, 3),
-    ("FCC", 3, 3)
+    ("FCC", 3, 3),
+    ("Pyrochlore", 3, 3)
 ]
 
 
