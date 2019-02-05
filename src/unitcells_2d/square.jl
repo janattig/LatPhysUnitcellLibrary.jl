@@ -67,12 +67,12 @@ function getUnitcellSquare(
         ],
         # bonds
         B[
-            newBond(B, 1,2, getDefaultLabelX(LB), (-1,0)),
+            newBond(B, 1,2, getDefaultLabelY(LB), (-1,0)),
             newBond(B, 1,4, getDefaultLabelY(LB), (0,-1)),
             newBond(B, 1,2, getDefaultLabelX(LB), (0,0)),
             newBond(B, 1,4, getDefaultLabelX(LB), (0,0)),
 
-            newBond(B, 2,1, getDefaultLabelX(LB), (1,0)),
+            newBond(B, 2,1, getDefaultLabelY(LB), (1,0)),
             newBond(B, 2,3, getDefaultLabelX(LB), (0,0)),
             newBond(B, 2,1, getDefaultLabelX(LB), (0,0)),
             newBond(B, 2,3, getDefaultLabelY(LB), (0,-1)),
@@ -117,12 +117,12 @@ function getUnitcellSquare(
         ],
         # bonds
         B[
-            newBond(B, 1,2, getDefaultLabelX(LB), (-1,0)),
+            newBond(B, 1,2, getDefaultLabelY(LB), (-1,0)),
             newBond(B, 1,4, getDefaultLabelY(LB), (0,-1)),
             newBond(B, 1,2, getDefaultLabelX(LB), (0,0)),
             newBond(B, 1,4, getDefaultLabelX(LB), (0,0)),
 
-            newBond(B, 2,1, getDefaultLabelX(LB), (1,0)),
+            newBond(B, 2,1, getDefaultLabelY(LB), (1,0)),
             newBond(B, 2,3, flipLabel(getDefaultLabelX(LB)), (0,0)),
             newBond(B, 2,1, getDefaultLabelX(LB), (0,0)),
             newBond(B, 2,3, flipLabel(getDefaultLabelY(LB)), (0,-1)),
