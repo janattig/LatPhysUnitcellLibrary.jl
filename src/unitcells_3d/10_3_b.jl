@@ -99,7 +99,7 @@ end
 # - labels <: Any
 function getUnitcell_10_3_b(
             unitcell_type  :: Type{U},
-            implementation :: Val{1}
+            implementation :: Val{2}
         ) :: U where {LS,LB,S<:AbstractSite{LS,3},B<:AbstractBond{LB,3},U<:AbstractUnitcell{S,B}}
 
     # return a new Unitcell
