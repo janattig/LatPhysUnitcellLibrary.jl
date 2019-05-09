@@ -22,20 +22,20 @@ function getUnitcell_10_3_d(
 		U,
 		# lattice vectors
 		Vector{Float64}[
-			Float64[0.5, -0.5,  0.0],
-			Float64[0.5,  0.5,  0.0],
-			Float64[0.0,  0.0,  0.5],
+			Float64[0.5, -0.5, 0],
+			Float64[0.5, 0.5, 0.0],
+			Float64[0.0, 0.0, c],
 		],
 		# sites
 		S[
-			newSite(S, Float64[0.0,     -a, 0.75*c], getDefaultLabelN(LS,1)),
-			newSite(S, Float64[ -a,    0.0,  0.5*c], getDefaultLabelN(LS,2)),
-			newSite(S, Float64[0.0,      a, 0.25*c], getDefaultLabelN(LS,3)),
-			newSite(S, Float64[  a,    0.0,    0.0], getDefaultLabelN(LS,4)),
-			newSite(S, Float64[ -a,   -0.5, 0.25*c], getDefaultLabelN(LS,5)),
-			newSite(S, Float64[0.0,  a-0.5,  0.5*c], getDefaultLabelN(LS,6)),
-			newSite(S, Float64[  a,   -0.5, 0.75*c], getDefaultLabelN(LS,7)),
-			newSite(S, Float64[0.0, -a-0.5,    0.0], getDefaultLabelN(LS,8)),
+			newSite(S, Float64[0.0, -a, 0.75*c], getDefaultLabelN(LS,1)),
+			newSite(S, Float64[-a, 0.0, 0.5*c], getDefaultLabelN(LS,2)),
+			newSite(S, Float64[0, a, 0.25*c], getDefaultLabelN(LS,3)),
+			newSite(S, Float64[a, 0.0, 0.0], getDefaultLabelN(LS,4)),
+			newSite(S, Float64[-a, -0.5, 0.25*c], getDefaultLabelN(LS,5)),
+			newSite(S, Float64[0, a - 0.5, 0.5*c], getDefaultLabelN(LS,6)),
+			newSite(S, Float64[a, -0.5, 0.75*c], getDefaultLabelN(LS,7)),
+			newSite(S, Float64[0, -a - 0.5, 0.0], getDefaultLabelN(LS,8)),
 		],
 		# bonds
 		B[
@@ -85,20 +85,20 @@ function getUnitcell_10_3_d(
 		U,
 		# lattice vectors
 		Vector{Float64}[
-			Float64[0.5, -0.5,  0.0],
-			Float64[0.5,  0.5,  0.0],
-			Float64[0.0,  0.0,  0.5],
+			Float64[0.5, -0.5, 0],
+			Float64[0.5, 0.5, 0.0],
+			Float64[0.0, 0.0, c],
 		],
 		# sites
 		S[
-			newSite(S, Float64[0.0,     -a, 0.75*c], getDefaultLabelN(LS,1)),
-			newSite(S, Float64[ -a,    0.0,  0.5*c], getDefaultLabelN(LS,2)),
-			newSite(S, Float64[0.0,      a, 0.25*c], getDefaultLabelN(LS,3)),
-			newSite(S, Float64[  a,    0.0,    0.0], getDefaultLabelN(LS,4)),
-			newSite(S, Float64[ -a,   -0.5, 0.25*c], getDefaultLabelN(LS,5)),
-			newSite(S, Float64[0.0,  a-0.5,  0.5*c], getDefaultLabelN(LS,6)),
-			newSite(S, Float64[  a,   -0.5, 0.75*c], getDefaultLabelN(LS,7)),
-			newSite(S, Float64[0.0, -a-0.5,    0.0], getDefaultLabelN(LS,8)),
+			newSite(S, Float64[0.0, -a, 0.75*c], getDefaultLabelN(LS,1)),
+			newSite(S, Float64[-a, 0.0, 0.5*c], getDefaultLabelN(LS,2)),
+			newSite(S, Float64[0, a, 0.25*c], getDefaultLabelN(LS,3)),
+			newSite(S, Float64[a, 0.0, 0.0], getDefaultLabelN(LS,4)),
+			newSite(S, Float64[-a, -0.5, 0.25*c], getDefaultLabelN(LS,5)),
+			newSite(S, Float64[0, a - 0.5, 0.5*c], getDefaultLabelN(LS,6)),
+			newSite(S, Float64[a, -0.5, 0.75*c], getDefaultLabelN(LS,7)),
+			newSite(S, Float64[0, -a - 0.5, 0.0], getDefaultLabelN(LS,8)),
 		],
 		# bonds
 		B[

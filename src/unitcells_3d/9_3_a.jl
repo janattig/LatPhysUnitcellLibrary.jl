@@ -11,12 +11,12 @@
 function getUnitcell_9_3_a(
 			unitcell_type  :: Type{U},
 			implementation :: Val{1}
-		) :: U where {LS,LB,S<:AbstractSite{LS,2},B<:AbstractBond{LB,3},U<:AbstractUnitcell{S,B}}
+		) :: U where {LS,LB,S<:AbstractSite{LS,3},B<:AbstractBond{LB,3},U<:AbstractUnitcell{S,B}}
 
 	# define some constants
-	a = [ 1.0,        0.0, 0.0]
+	a = [1.0, 0.0, 0.0]
 	b = [-0.5, sqrt(3)/2., 0.0]
-	c = [ 0.0,        0.0, sqrt(6*(4 + sqrt(3)))/(1 + 2*sqrt(3))]
+	c = [0.0, 0.0, sqrt(6*(4 + sqrt(3)))/(1 + 2*sqrt(3))]
 	d_f = sqrt(3)/(1+2*sqrt(3))
 	d_h = (29 - 3*sqrt(3))/132.
 	# return a new Unitcell
@@ -25,24 +25,24 @@ function getUnitcell_9_3_a(
 		U,
 		# lattice vectors
 		Vector{Float64}[
-			(-1/3.).*a + (1/3.).*b + (1/3.).*c,
-			(-1/3.).*a + (2/3.).*b + (1/3.).*c,
-			(2/3.).*a + (1/3.).*b + (1/3.).*c,
+			-a./3 + b./3 + c./3,
+			-a./3 + b.*-2/3 + c./3,
+			a.*2/3. + b./3 + c./3,
 		],
 		# sites
 		S[
-			newSite(S, d_f.*a, getDefaultLabelN(LS,1)),
-			newSite(S, 2*d_h.*a +   d_h.*b + (1/12).*c, getDefaultLabelN(LS,2)),
-			newSite(S, d_f.*a +   d_f.*b, getDefaultLabelN(LS,3)),
-			newSite(S, d_h.*a + 2*d_h.*b - (1/12).*c, getDefaultLabelN(LS,4)),
-			newSite(S, d_f.*b, getDefaultLabelN(LS,5)),
-			newSite(S, -d_h.*a +   d_h.*b + (1/12).*c, getDefaultLabelN(LS,6)),
-			newSite(S, -d_f.*a, getDefaultLabelN(LS,7)),
-			newSite(S, -2*d_h.*a -   d_h.*b - (1/12).*c, getDefaultLabelN(LS,8)),
-			newSite(S, -d_f.*a -   d_f.*b, getDefaultLabelN(LS,9)),
-			newSite(S, -d_h.*a - 2*d_h.*b + (1/12).*c, getDefaultLabelN(LS,10)),
-			newSite(S, -   d_f.*b, getDefaultLabelN(LS,11)),
-			newSite(S, d_h.*a -   d_h.*b - (1/12).*c, getDefaultLabelN(LS,12)),
+			newSite(S, d_f * a, getDefaultLabelN(LS,1)),
+			newSite(S, 2*d_h * a + d_h * b + c/12., getDefaultLabelN(LS,2)),
+			newSite(S, d_f * (a + b), getDefaultLabelN(LS,3)),
+			newSite(S, d_h * a + 2*d_h * b - c/12., getDefaultLabelN(LS,4)),
+			newSite(S, d_f * b, getDefaultLabelN(LS,5)),
+			newSite(S, -d_h *a + d_h * b + c/12., getDefaultLabelN(LS,6)),
+			newSite(S, -d_f * a, getDefaultLabelN(LS,7)),
+			newSite(S, -2*d_h * a - d_h * b - c/12., getDefaultLabelN(LS,8)),
+			newSite(S, -d_f * (a + b), getDefaultLabelN(LS,9)),
+			newSite(S, -d_h * a - 2*d_h*b + c/12., getDefaultLabelN(LS,10)),
+			newSite(S, -d_f * b, getDefaultLabelN(LS,11)),
+			newSite(S, d_h * a - d_h * b - c/12., getDefaultLabelN(LS,12)),
 		],
 		# bonds
 		B[
@@ -97,8 +97,8 @@ function getUnitcell_9_3_a(
 
 	# define some constants
 	a1 = [-sqrt(3)/2., 1/2., 1/sqrt(3)]
-	a2 = [         0.,  -1., 1/sqrt(3)]
-	a3 = [ sqrt(3)/2., 1/2., 1/sqrt(3)]
+	a2 = [0, -1, 1/sqrt(3)]
+	a3 = [sqrt(3)/2, 1/2, 1/sqrt(3)]
 	# return a new Unitcell
 	return newUnitcell(
 		# Type of the unitcell
@@ -106,23 +106,23 @@ function getUnitcell_9_3_a(
 		# lattice vectors
 		Vector{Float64}[
 			Float64[-sqrt(3)/2., 1/2., 1/sqrt(3)],
-			Float64[         0.,  -1., 1/sqrt(3)],
-			Float64[ sqrt(3)/2., 1/2., 1/sqrt(3)],
+			Float64[0, -1, 1/sqrt(3)],
+			Float64[sqrt(3)/2, 1/2, 1/sqrt(3)],
 		],
 		# sites
 		S[
 			newSite(S, Float64[0, 0, 0], getDefaultLabelN(LS,1)),
-			newSite(S, (1/6).*a1 - (1/6).*a2, getDefaultLabelN(LS,2)),
-			newSite(S, (2/6).*a1 - (2/6).*a2, getDefaultLabelN(LS,3)),
-			newSite(S, (3/6).*a1 - (2/6).*a2 - (1/6).*a3, getDefaultLabelN(LS,4)),
-			newSite(S, (4/6).*a1 - (2/6).*a2 - (2/6).*a3, getDefaultLabelN(LS,5)),
-			newSite(S, (4/6).*a1 - (1/6).*a2 - (3/6).*a3, getDefaultLabelN(LS,6)),
-			newSite(S, (4/6).*a1             - (4/6).*a3, getDefaultLabelN(LS,7)),
-			newSite(S, (3/6).*a1 + (1/6).*a2 - (4/6).*a3, getDefaultLabelN(LS,8)),
-			newSite(S, (2/6).*a1 + (2/6).*a2 - (4/6).*a3, getDefaultLabelN(LS,9)),
-			newSite(S, (1/6).*a1 + (2/6).*a2 - (3/6).*a3, getDefaultLabelN(LS,10)),
-			newSite(S, (2/6).*a1             - (2/6).*a3, getDefaultLabelN(LS,11)),
-			newSite(S, (1/6).*a1             - (1/6).*a3, getDefaultLabelN(LS,12)),
+			newSite(S, a1./6. - a2./6., getDefaultLabelN(LS,2)),
+			newSite(S, a1./3. - a2./3., getDefaultLabelN(LS,3)),
+			newSite(S, a1./2. - a2./3. - a3./6., getDefaultLabelN(LS,4)),
+			newSite(S, 2/3 .* a1 - a2./3. - a3./3., getDefaultLabelN(LS,5)),
+			newSite(S, 2/3 .* a1 - a2./6. - a3./2., getDefaultLabelN(LS,6)),
+			newSite(S, 2/3 .* a1 - 2/3 .* a3, getDefaultLabelN(LS,7)),
+			newSite(S, a1./2. + a2./6. - 2/3 .*a3, getDefaultLabelN(LS,8)),
+			newSite(S, a1./3. + a2./3. - 2/3 .*a3, getDefaultLabelN(LS,9)),
+			newSite(S, a1./6. + a2./3. - a3./2., getDefaultLabelN(LS,10)),
+			newSite(S, a2./3. - a3./3., getDefaultLabelN(LS,11)),
+			newSite(S, a2./6. - a3./6., getDefaultLabelN(LS,12)),
 		],
 		# bonds
 		B[
@@ -173,12 +173,12 @@ end
 function getUnitcell_9_3_a(
 			unitcell_type  :: Type{U},
 			implementation :: Val{4}
-		) :: U where {LS,LB,S<:AbstractSite{LS,2},B<:AbstractBond{LB,3},U<:AbstractUnitcell{S,B}}
+		) :: U where {LS,LB,S<:AbstractSite{LS,3},B<:AbstractBond{LB,3},U<:AbstractUnitcell{S,B}}
 
 	# define some constants
-	a = [ 1.0,        0.0, 0.0]
+	a = [1.0, 0.0, 0.0]
 	b = [-0.5, sqrt(3)/2., 0.0]
-	c = [ 0.0,        0.0, sqrt(6*(4 + sqrt(3)))/(1 + 2*sqrt(3))]
+	c = [0.0, 0.0, sqrt(6*(4 + sqrt(3)))/(1 + 2*sqrt(3))]
 	d_f = sqrt(3)/(1+2*sqrt(3))
 	d_h = (29 - 3*sqrt(3))/132.
 	# return a new Unitcell
@@ -186,25 +186,25 @@ function getUnitcell_9_3_a(
 		# Type of the unitcell
 		U,
 		# lattice vectors
-		Vector{Float64}[
-			(-1/3.).*a + (1/3.).*b + (1/3.).*c,
-			(-1/3.).*a + (2/3.).*b + (1/3.).*c,
-			(2/3.).*a + (1/3.).*b + (1/3.).*c,
+        Vector{Float64}[
+			-a./3 + b./3 + c./3,
+			-a./3 + b.*-2/3 + c./3,
+			a.*2/3. + b./3 + c./3,
 		],
 		# sites
 		S[
-			newSite(S, d_f.*a, getDefaultLabelN(LS,1)),
-			newSite(S, 2*d_h.*a +   d_h.*b + (1/12).*c, getDefaultLabelN(LS,2)),
-			newSite(S, d_f.*a +   d_f.*b, getDefaultLabelN(LS,3)),
-			newSite(S, d_h.*a + 2*d_h.*b - (1/12).*c, getDefaultLabelN(LS,4)),
-			newSite(S, d_f.*b, getDefaultLabelN(LS,5)),
-			newSite(S, -d_h.*a +   d_h.*b + (1/12).*c, getDefaultLabelN(LS,6)),
-			newSite(S, -d_f.*a, getDefaultLabelN(LS,7)),
-			newSite(S, -2*d_h.*a -   d_h.*b - (1/12).*c, getDefaultLabelN(LS,8)),
-			newSite(S, -d_f.*a -   d_f.*b, getDefaultLabelN(LS,9)),
-			newSite(S, -d_h.*a - 2*d_h.*b + (1/12).*c, getDefaultLabelN(LS,10)),
-			newSite(S, -   d_f.*b, getDefaultLabelN(LS,11)),
-			newSite(S, d_h.*a -   d_h.*b - (1/12).*c, getDefaultLabelN(LS,12)),
+			newSite(S, d_f * a, getDefaultLabelN(LS,1)),
+			newSite(S, 2*d_h * a + d_h * b + c/12., getDefaultLabelN(LS,2)),
+			newSite(S, d_f * (a + b), getDefaultLabelN(LS,3)),
+			newSite(S, d_h * a + 2*d_h * b - c/12., getDefaultLabelN(LS,4)),
+			newSite(S, d_f * b, getDefaultLabelN(LS,5)),
+			newSite(S, -d_h *a + d_h * b + c/12., getDefaultLabelN(LS,6)),
+			newSite(S, -d_f * a, getDefaultLabelN(LS,7)),
+			newSite(S, -2*d_h * a - d_h * b - c/12., getDefaultLabelN(LS,8)),
+			newSite(S, -d_f * (a + b), getDefaultLabelN(LS,9)),
+			newSite(S, -d_h * a - 2*d_h*b + c/12., getDefaultLabelN(LS,10)),
+			newSite(S, -d_f * b, getDefaultLabelN(LS,11)),
+			newSite(S, d_h * a - d_h * b - c/12., getDefaultLabelN(LS,12)),
 		],
 		# bonds
 		B[
@@ -259,8 +259,8 @@ function getUnitcell_9_3_a(
 
 	# define some constants
 	a1 = [-sqrt(3)/2., 1/2., 1/sqrt(3)]
-	a2 = [         0.,  -1., 1/sqrt(3)]
-	a3 = [ sqrt(3)/2., 1/2., 1/sqrt(3)]
+	a2 = [0, -1, 1/sqrt(3)]
+	a3 = [sqrt(3)/2, 1/2, 1/sqrt(3)]
 	# return a new Unitcell
 	return newUnitcell(
 		# Type of the unitcell
@@ -268,23 +268,23 @@ function getUnitcell_9_3_a(
 		# lattice vectors
 		Vector{Float64}[
 			Float64[-sqrt(3)/2., 1/2., 1/sqrt(3)],
-			Float64[         0.,  -1., 1/sqrt(3)],
-			Float64[ sqrt(3)/2., 1/2., 1/sqrt(3)],
+			Float64[0, -1, 1/sqrt(3)],
+			Float64[sqrt(3)/2, 1/2, 1/sqrt(3)],
 		],
 		# sites
 		S[
 			newSite(S, Float64[0, 0, 0], getDefaultLabelN(LS,1)),
-			newSite(S, (1/6).*a1 - (1/6).*a2, getDefaultLabelN(LS,2)),
-			newSite(S, (2/6).*a1 - (2/6).*a2, getDefaultLabelN(LS,3)),
-			newSite(S, (3/6).*a1 - (2/6).*a2 - (1/6).*a3, getDefaultLabelN(LS,4)),
-			newSite(S, (4/6).*a1 - (2/6).*a2 - (2/6).*a3, getDefaultLabelN(LS,5)),
-			newSite(S, (4/6).*a1 - (1/6).*a2 - (3/6).*a3, getDefaultLabelN(LS,6)),
-			newSite(S, (4/6).*a1             - (4/6).*a3, getDefaultLabelN(LS,7)),
-			newSite(S, (3/6).*a1 + (1/6).*a2 - (4/6).*a3, getDefaultLabelN(LS,8)),
-			newSite(S, (2/6).*a1 + (2/6).*a2 - (4/6).*a3, getDefaultLabelN(LS,9)),
-			newSite(S, (1/6).*a1 + (2/6).*a2 - (3/6).*a3, getDefaultLabelN(LS,10)),
-			newSite(S, (2/6).*a1             - (2/6).*a3, getDefaultLabelN(LS,11)),
-			newSite(S, (1/6).*a1             - (1/6).*a3, getDefaultLabelN(LS,12)),
+			newSite(S, a1./6. - a2./6., getDefaultLabelN(LS,2)),
+			newSite(S, a1./3. - a2./3., getDefaultLabelN(LS,3)),
+			newSite(S, a1./2. - a2./3. - a3./6., getDefaultLabelN(LS,4)),
+			newSite(S, 2/3 .* a1 - a2./3. - a3./3., getDefaultLabelN(LS,5)),
+			newSite(S, 2/3 .* a1 - a2./6. - a3./2., getDefaultLabelN(LS,6)),
+			newSite(S, 2/3 .* a1 - 2/3 .*a3, getDefaultLabelN(LS,7)),
+			newSite(S, a1./2. + a2./6. - 2/3 .*a3, getDefaultLabelN(LS,8)),
+			newSite(S, a1./3. + a2./3. - 2/3 .*a3, getDefaultLabelN(LS,9)),
+			newSite(S, a1./6. + a2./3. - a3./2., getDefaultLabelN(LS,10)),
+			newSite(S, a2./3. - a3./3., getDefaultLabelN(LS,11)),
+			newSite(S, a2./6. - a3./6., getDefaultLabelN(LS,12)),
 		],
 		# bonds
 		B[
