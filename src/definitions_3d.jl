@@ -17,3 +17,6 @@ include("unitcells_3d/fcc.jl")
 
 # Pyrochlore lattice
 include("unitcells_3d/pyrochlore.jl")
+
+# (10,3)a lattice
+include("unitcells_3d/10_3_a.jl")

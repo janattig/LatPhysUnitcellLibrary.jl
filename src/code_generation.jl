@@ -8,7 +8,9 @@ functions_generate = Tuple{String, Int64, Int64}[
 
     ("Cubic", 3, 3),
     ("FCC", 3, 3),
-    ("Pyrochlore", 3, 3)
+    ("Pyrochlore", 3, 3),
+
+    ("10_3_a", 3, 3)
 ]
 
 
@@ -20,8 +22,13 @@ for operatorpair in functions_generate
     D = operatorpair[2]
     N = operatorpair[3]
     # generate a global name for getUnitcellXXX Syntax
-    function_name = "getUnitcell" * filter(c -> isascii(c) && isletter(c), uppercase(operatorpair[1][1]) * operatorpair[1][2:end])
-    function_id   = lowercase(filter(c -> isascii(c) && isletter(c), operatorpair[1]))
+    if isdigit(operatorpair[1][1])
+        function_name = "getUnitcell_"*lowercase(filter(c -> isascii(c), operatorpair[1]))
+        function_id   = lowercase(filter(c -> isascii(c), operatorpair[1]))
+    else
+        function_name = "getUnitcell" * filter(c -> isascii(c) && isletter(c), uppercase(operatorpair[1][1]) * operatorpair[1][2:end])
+        function_id   = lowercase(filter(c -> isascii(c) && isletter(c), operatorpair[1]))
+    end
 
     # evaluate global export
     eval( quote
