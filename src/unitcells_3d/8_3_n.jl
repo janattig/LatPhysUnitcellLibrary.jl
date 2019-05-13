@@ -11,7 +11,7 @@
 function getUnitcell_8_3_n(
 			unitcell_type  :: Type{U},
 			implementation :: Val{1}
-		) :: U where {LS,LB,S<:AbstractSite{LS,2},B<:AbstractBond{LB,3},U<:AbstractUnitcell{S,B}}
+		) :: U where {LS,LB,S<:AbstractSite{LS,3},B<:AbstractBond{LB,3},U<:AbstractUnitcell{S,B}}
 
 	# define some constants
 	a = [1.0, 0.0, 0.0]
@@ -109,7 +109,7 @@ end
 function getUnitcell_8_3_n(
 			unitcell_type  :: Type{U},
 			implementation :: Val{4}
-		) :: U where {LS,LB,S<:AbstractSite{LS,2},B<:AbstractBond{LB,3},U<:AbstractUnitcell{S,B}}
+		) :: U where {LS,LB,S<:AbstractSite{LS,3},B<:AbstractBond{LB,3},U<:AbstractUnitcell{S,B}}
 
 	# define some constants
 	a = [1.0, 0.0, 0.0]
