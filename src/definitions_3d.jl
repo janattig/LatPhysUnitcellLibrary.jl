@@ -19,6 +19,9 @@ include("unitcells_3d/diamond.jl")
 # Pyrochlore lattice
 include("unitcells_3d/pyrochlore.jl")
 
+# Pyrochlore lattice
+include("unitcells_3d/hyperkagome.jl")
+
 # (8,3)a lattice
 include("unitcells_3d/8_3_a.jl")
 # (8,3)b lattice
