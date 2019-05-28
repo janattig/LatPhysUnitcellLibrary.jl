@@ -134,3 +134,19 @@ for operatorpair in functions_generate
 
 
 end
+
+
+
+
+
+
+
+
+
+
+# SYNONYMS
+getUnitcellHyperhoneycomb = getUnitcell_10_3_b
+getUnitcellHyperoctagon   = getUnitcell_10_3_a
+getUnitcellSC             = getUnitcellCubic
+
+export getUnitcellHyperhoneycomb, getUnitcellHyperoctagon, getUnitcellSC
