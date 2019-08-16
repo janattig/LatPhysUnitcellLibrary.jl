@@ -15,6 +15,8 @@ include("unitcells_2d/square.jl")
 # Square octagon lattice
 include("unitcells_2d/square_octagon.jl")
 
+# Shastry Sutherland lattice
+include("unitcells_2d/shastry_sutherland.jl")
 
 
 
