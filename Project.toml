@@ -6,6 +6,10 @@ version = "0.1.0"
 [deps]
 LatPhysBase = "eec5c15a-e8bd-11e8-0d23-6799ca40c963"
 
+[compat]
+LatPhysBase = "0.1"
+julia = "1"
+
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
