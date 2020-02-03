@@ -103,7 +103,10 @@ for operatorpair in functions_generate
             ) :: Unitcell{Site{Int64,$D},Bond{Int64,$N}}
 
         # create a suitable unitcell of the Unitcell type
-        return $(Symbol(function_name))(Unitcell{Site{Int64,$D},Bond{Int64,$N}}, implementation)
+        return $(Symbol(function_name))(
+            Unitcell{Site{Int64,$D},Bond{Int64,$N}, $(Meta.quot(Symbol(operatorpair[1])))},
+            implementation
+        )
     end
     end )
 
@@ -115,7 +118,10 @@ for operatorpair in functions_generate
             ) :: Unitcell{Site{L,$D},Bond{L,$N}} where L
 
         # create a suitable unitcell of the Unitcell type
-        return $(Symbol(function_name))(Unitcell{Site{L,$D},Bond{L,$N}}, implementation)
+        return $(Symbol(function_name))(
+            Unitcell{Site{L,$D},Bond{L,$N}, $(Meta.quot(Symbol(operatorpair[1])))},
+            implementation
+        )
     end
     end )
 
@@ -128,7 +134,10 @@ for operatorpair in functions_generate
             ) :: Unitcell{Site{LS,$D},Bond{LB,$N}} where {LS,LB}
 
         # create a suitable unitcell of the Unitcell type
-        return $(Symbol(function_name))(Unitcell{Site{LS,$D},Bond{LB,$N}}, implementation)
+        return $(Symbol(function_name))(
+            Unitcell{Site{LS,$D},Bond{LB,$N}, $(Meta.quot(Symbol(operatorpair[1])))},
+            implementation
+        )
     end
     end )
 
